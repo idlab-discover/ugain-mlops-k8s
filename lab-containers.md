@@ -77,7 +77,7 @@ For more information on the use of these commands, type `docker COMMAND --help`.
 
 ### Preparation
 
-> :warning: We highly recommend working in a directory that is not administrator-protected. For instance create the folder C:\containers and cd into that folder before continuing with this lab!
+> :warning: We highly recommend working outside of the devcontainer and in a directory that is not administrator-protected for this part of the lab. So if you are working on Windows, use the WSL terminal.
 
 Once you've picked a directory to work in (we will refer to that as the root directory), you will have to create a single configuration file. This configuration is used for Prometheus, a time series database used mostly in monitoring systems, which we will set up later.
 
