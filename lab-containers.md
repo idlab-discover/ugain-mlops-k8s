@@ -204,7 +204,7 @@ That's it, you now have a dashboard connected to our metrics in Prometheus.
 
 In the previous step you've manually set up 4 containers and a network, and made them work together. While this is definitely an improvement over regular OS installs of these services, it still is quite a bit of work setting these up (and tearing them down).
 
-This is where **Docker Compose** comes in. It allows us to write a simple *docker-compose.yml* (YAML) file that describes each of our services. Once this file is in place, you can just execute `docker compose up` and all the services will start. If you want to bring them down, a simple `docker compose down` is all it takes. We will now do this for our 4 services, but first make sure all running containers are stopped.
+This is where **Docker Compose** comes in. It allows us to write a simple *docker-compose.yml* (YAML) file that describes each of our services. Once this file is in place, you can just execute `docker-compose up` and all the services will start. If you want to bring them down, a simple `docker-compose down` is all it takes. We will now do this for our 4 services, but first make sure all running containers are stopped.
 
 > :information_source: Use `docker ps -a` to list all existing containers and `docker rm -f [container]` to force delete the containers (even if they are running). If you do not delete them, Docker will complain that containers with the same name already exist. We can also remove the created network with `docker network rm [network]`.
 
@@ -320,7 +320,7 @@ The last service to add is Grafana, and this should speak for itself by now.
 So now we got all services defined, this is how you start everything:
 
 ```
-docker compose up -d
+docker-compose up -d
 ```
 
 This will start all services and create the network if it did not exist. If the images are not downloaded yet, they will be pulled first. The `-d` trigger makes them all run detached.
@@ -328,7 +328,7 @@ This will start all services and create the network if it did not exist. If the 
 If you want to inspect the log output of a service, for instance Prometheus, try this:
 
 ```
-docker compose logs prometheus
+docker-compose logs prometheus
 ```
 
 Use the optional `-f` trigger to tail the log. (`docker-compose logs -f prometheus`, `ctrl+c` to break out again).
@@ -336,7 +336,7 @@ Use the optional `-f` trigger to tail the log. (`docker-compose logs -f promethe
 If you want to bring everything down, use:
 
 ```
-docker compose down
+docker-compose down
 ```
 
 **Data Persistence with Volumes**
@@ -379,7 +379,7 @@ Now when we bring our services up, we can see them running with `docker ps` and 
 
 Now when we bring our services down or restart them, you'll see that data gets persisted. You can now easily start building out your docker monitoring deployment and start and stop it when needed, without having to re-import dashboards/settings/etc.
 
-*Optionally if you do want to wipe your data, you can use `docker compose down -v` , this will delete all named volumes (and thus clear your Prometheus database and delete your Grafana configuration and dashboards). If you are curious to learn more about (named) volumes: [docker volumes](https://docs.docker.com/storage/volumes/)*
+*Optionally if you do want to wipe your data, you can use `docker-compose down -v` , this will delete all named volumes (and thus clear your Prometheus database and delete your Grafana configuration and dashboards). If you are curious to learn more about (named) volumes: [docker volumes](https://docs.docker.com/storage/volumes/)*
 
 **Summary**
 With that you should now have a general understanding of Docker and Docker Compose. You can easily see how you can quickly set up different services on your development machine using Docker Compose and bring them down without any effort. This is very useful in many cases:
